@@ -15,6 +15,52 @@ To use this Short Link Generator, enter a long link in the form below and click 
 Short Link: <span id="shortLink"></span>
 
 <script>
+    document.getElementById('linkForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
+    const longLink = document.getElementById('longLink').value;
+
+    // Replace 'YOUR_ACCESS_TOKEN' and 'OWNER/REPO' with your GitHub access token and the repository you want to create an issue in.
+    const accessToken = 'YOUR_ACCESS_TOKEN';
+    const repo = 'razorshaman909/razorshaman909.github.io';
+
+    createGitHubIssue(accessToken, repo, longLink)
+        .then((response) => {
+            if (response.status === 201) {
+                return response.json(); 
+                /**document.getElementById('shortLink').textContent = 'Issue created successfully!'; **/
+            } else {
+                document.getElementById('shortLink').textContent = 'Issue creation failed. Check your access token and repository.';
+            }
+        })
+        .then((data) => {
+            if (data && data.number) {
+                const issueNumber = data.number
+                /**console.log(issueNumber)**/
+                document.getElementById('shortLink').innerHTML  = `https://razorshaman909.github.io/${issueNumber}`;
+            }
+        }
+        )
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});
+
+function createGitHubIssue(accessToken, repo, longLink) {
+    const url = `https://api.github.com/repos/${repo}/issues`;
+    const issueData = {
+        title: `${longLink}`,
+        body: ` `,
+    };
+
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            Authorization: `token ${accessToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(issueData),
+    });
+}
 
 </script>
