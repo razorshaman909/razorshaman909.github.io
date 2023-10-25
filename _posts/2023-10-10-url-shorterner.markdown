@@ -2,9 +2,9 @@
 layout: post
 title:  "Short Link Generator"
 date:   2023-10-10 19:43:59 +0800
-categories: personal update
+categories: personal project
 ---
-To use this Short Link Generator, enter a long link in the form below and click the "Generate Short Link" button. The tool will provide you with a shorter link.
+To use this Short Link Generator, enter a long link in the form below and click the "Generate Short Link" button. The tool will provide you with a shorter link. The tool works based on the created issues on the respective repository, returning the issue title as the link. Do mind that accessing the short link have a 60 daily rate limit.
 
 <form id="linkForm">
     <label for="longLink">Enter a Long Link:</label>
@@ -30,7 +30,7 @@ Short Link: <span id="shortLink"></span>
                 return response.json(); 
                 /**document.getElementById('shortLink').textContent = 'Issue created successfully!'; **/
             } else {
-                document.getElementById('shortLink').textContent = 'Issue creation failed. Check your access token and repository.';
+                document.getElementById('shortLink').textContent = 'Short link/Issue creation failed. Check your access token and repository.';
             }
         })
         .then((data) => {
