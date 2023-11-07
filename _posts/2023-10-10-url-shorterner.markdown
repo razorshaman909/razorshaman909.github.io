@@ -44,23 +44,23 @@ Short Link: <span id="shortLink"></span>
         .catch((error) => {
             console.error('Error:', error);
         });
-});
-
-function createGitHubIssue(accessToken, repo, longLink) {
-    const url = `https://api.github.com/repos/${repo}/issues`;
-    const issueData = {
-        title: `${longLink}`,
-        body: ` `,
-    };
-
-    return fetch(url, {
-        method: 'POST',
-        headers: {
-            Authorization: `token ${accessToken}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(issueData),
     });
+
+    function createGitHubIssue(accessToken, repo, longLink) {
+        const url = `https://api.github.com/repos/${repo}/issues`;
+        const issueData = {
+            title: `${longLink}`,
+            body: ` `,
+        };
+
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                Authorization: `token ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(issueData),
+        });
 }
 
 </script>

@@ -1,0 +1,14 @@
+{
+    "longlinks":[
+        {
+            "id": 0,
+            "url": "https://www.google.com/"
+        }
+    ],
+    "shortlinks":[
+        {
+            "id": 0,
+            "url": "https://"
+        }
+    ]
+}

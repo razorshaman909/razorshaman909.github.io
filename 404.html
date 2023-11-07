@@ -68,6 +68,7 @@
           location.replace(homepage);
         };
         xhr.open("GET", GITHUB_ISSUES_LINK + issueNumber);
+        // get around when rate limited, using API key
 /**        xhr.setRequestHeader(
           "Authorization",
           "Bearer " + process.env.ISSUE_TOKEN
